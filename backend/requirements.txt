@@ -1,0 +1,37 @@
+# FastAPI and server dependencies
+fastapi==0.115.0
+uvicorn[standard]==0.32.0
+python-multipart==0.0.17
+pydantic==2.9.2
+pydantic-settings==2.6.1
+
+# Document processing - multiple formats
+pypdf==5.1.0
+pdfplumber==0.11.4
+python-docx==1.1.2  # For DOCX files
+python-pptx==1.0.2  # For PowerPoint files
+openpyxl==3.1.5  # For Excel files
+markdown==3.7  # For Markdown files
+PyMuPDF==1.24.13  # Alternative PDF processor with better format support
+
+# LangChain and RAG components
+langchain==0.3.7
+langchain-openai==0.2.8
+langchain-community==0.3.7
+openai==1.30.1
+httpx==0.27.0
+
+# Vector database (ChromaDB for local development)
+chromadb==0.5.18
+
+# Text processing and embeddings
+tiktoken==0.8.0
+sentence-transformers==3.3.1
+
+# Utilities
+python-dotenv==1.0.1
+aiofiles==24.1.0
+
+# CORS and middleware
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
