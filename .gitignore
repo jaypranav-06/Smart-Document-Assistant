@@ -44,6 +44,9 @@ chroma_db/
 uploads/
 temp/
 *.pdf
+*.docx
+*.doc
+*.txt
 *.tmp
 
 # IDE

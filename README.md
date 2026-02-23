@@ -1,13 +1,13 @@
 # Smart Document Assistant
 
-Chat with your PDFs and get answers with actual citations showing where the information came from. Uses Ollama AI locally to process documents and generate answers. The main feature here is precise citation tracking - you can click on any citation and it'll highlight exactly which part of the PDF was used.
+Chat with your documents and get answers with actual citations showing where the information came from. Uses Ollama AI locally to process documents and generate answers. The main feature here is precise citation tracking - you can click on any citation and it'll highlight exactly which part of the document was used.
 
 ## What it does
 
-- Upload PDFs and extract text with position tracking
+- Upload documents (PDF, DOCX, TXT, and more) and extract text with position tracking
 - Ask questions using Ollama AI (runs locally on your machine)
 - Get answers with citations that show page numbers, character positions, and the exact text
-- Click citations to jump to and highlight the source in the PDF
+- Click citations to jump to and highlight the source in the document
 - Uses ChromaDB for vector search
 - Built with Next.js 14 and FastAPI
 
@@ -30,7 +30,7 @@ Chat with your PDFs and get answers with actual citations showing where the info
 
 Frontend: Next.js 14, TypeScript, Tailwind, React-PDF, React-Dropzone
 
-Backend: Python 3.11+, FastAPI, LangChain, ChromaDB, pdfplumber, Ollama AI (local models)
+Backend: Python 3.11+, FastAPI, LangChain, ChromaDB, document processors (PDF, DOCX, TXT), Ollama AI (local models)
 
 ## Setup
 
@@ -67,11 +67,11 @@ The "Smart" Document Assistant/
 ├── backend/
 │   ├── app/
 │   │   ├── api/              # REST API endpoints
-│   │   │   ├── upload.py     # PDF upload
+│   │   │   ├── upload.py     # Document upload
 │   │   │   ├── query.py      # Question answering
 │   │   │   └── documents.py  # Document management
 │   │   ├── services/
-│   │   │   ├── pdf_processor.py    # PDF extraction with positions
+│   │   │   ├── pdf_processor.py    # Document extraction with positions
 │   │   │   ├── chunker.py          # Intelligent chunking
 │   │   │   ├── vector_store.py     # Vector database
 │   │   │   └── rag_service.py      # RAG pipeline with citations
@@ -79,7 +79,7 @@ The "Smart" Document Assistant/
 │   │   │   └── schemas.py    # Pydantic models
 │   │   ├── config.py         # Settings
 │   │   └── main.py           # FastAPI app
-│   ├── uploads/              # Uploaded PDFs
+│   ├── uploads/              # Uploaded documents
 │   ├── chroma_db/            # Vector database
 │   └── requirements.txt
 │
@@ -98,13 +98,13 @@ The "Smart" Document Assistant/
 
 The citation tracking is pretty straightforward:
 
-1. Extract text from PDFs using pdfplumber and track page numbers + character positions
+1. Extract text from documents (PDF, DOCX, TXT) and track page numbers + character positions
 2. Split into chunks but keep the position metadata (`{page_number, char_start, char_end}`)
 3. Store chunks in ChromaDB for vector search
 4. When you ask a question, retrieve relevant chunks (they still have their position data)
 5. Send the chunks to Ollama to generate an answer based on the context
 6. Return the answer with citations containing page, position, relevance score, and original text
-7. Frontend displays the PDF and highlights the exact paragraph when you click a citation
+7. Frontend displays the document and highlights the exact paragraph when you click a citation
 
 ## API
 
@@ -112,7 +112,7 @@ Check out the docs at `http://localhost:8000/api/docs` once the backend is runni
 
 Main endpoints:
 
-`POST /api/upload` - Upload a PDF (multipart/form-data)
+`POST /api/upload` - Upload a document (PDF, DOCX, TXT - multipart/form-data)
 
 `POST /api/query` - Ask questions and get citations back
 ```json
@@ -125,7 +125,7 @@ Main endpoints:
 ## TODO
 
 Working on:
-- [ ] PDF viewer component
+- [ ] Document viewer component
 - [ ] Chat interface
 - [ ] Citation highlighting overlay
 - [ ] Document management UI
