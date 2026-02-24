@@ -1,4 +1,4 @@
-# Smart Document Assistant
+# Smart AI  Document Assistant
 
 Chat with your documents and get answers with actual citations showing where the information came from. Uses Ollama AI locally to process documents and generate answers. The main feature here is precise citation tracking - you can click on any citation and it'll highlight exactly which part of the document was used.
 
